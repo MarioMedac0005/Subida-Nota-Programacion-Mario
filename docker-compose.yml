@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      # Creamos la BD y el usuario
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: listaCompra
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: usuario123
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    # Pasamos las variables de conexión a la app
+    environment:
+      DB_URL: jdbc:mysql://db:3306/listaCompra?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USER: usuario
+      DB_PASS: usuario123
+    depends_on:
+      - db
+
+volumes:
+  db_data:

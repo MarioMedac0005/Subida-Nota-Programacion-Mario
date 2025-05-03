@@ -19,11 +19,20 @@ services:
       - "8080:8080"
     # Pasamos las variables de conexión a la app
     environment:
-      DB_URL: jdbc:mysql://db:3306/listaCompra?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_URL: jdbc:mysql://db:3306/listaCompra
       DB_USER: usuario
       DB_PASS: usuario123
     depends_on:
       - db
+    command: >
+      sh -c "
+        echo 'Esperando a que MySQL esté disponible...';
+        while ! nc -z db 3306; do
+          sleep 1;
+        done;
+        echo 'MySQL está listo. Arrancando la app...';
+        java -jar /app.jar
+      "
 
 volumes:
   db_data:

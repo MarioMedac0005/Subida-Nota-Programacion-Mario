@@ -1,5 +1,6 @@
 package com.programacion.MarioOrtizHidalgo.model;
 
-public class ProductStatus {
-    
+public enum ProductStatus {
+    PENDING,
+    PURCHASED
 }

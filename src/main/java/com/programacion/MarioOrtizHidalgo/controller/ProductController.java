@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name = "Productos", description = "Gestión básica de productos.")
 @RestController
-@RequestMapping("/products/")
+@RequestMapping("/products")
 @CrossOrigin(origins = "http://localhost:4321")
 public class ProductController {
 
@@ -42,12 +42,12 @@ public class ProductController {
                                         {
                                             "name": "Leche",
                                             "cantidad": "2 litros",
-                                            "status": "PENDING"
+                                            "estado": "PENDING"
                                         },
                                         {
                                             "name": "Pan",
                                             "cantidad": "1 docena",
-                                            "status": "PENDING"
+                                            "estado": "PENDING"
                                         }
                                     ]
                                     """)
@@ -105,7 +105,6 @@ public class ProductController {
                                         "id": 1,
                                         "name": "Leche",
                                         "cantidad": "2 litros",
-                                        "status": "PENDING"
                                     }
                                     """)
                     }

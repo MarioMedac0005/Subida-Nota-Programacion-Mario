@@ -11,15 +11,15 @@ import lombok.*;
 @Entity
 public class Product {
     
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String nombre;
 
     @Schema(description = "Cantidad del producto, puede ser una descripción como '1 docena', '500g', etc.")
     private String cantidad;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.PENDING;
+    private ProductStatus estado = ProductStatus.PENDIENTE;
 
 }

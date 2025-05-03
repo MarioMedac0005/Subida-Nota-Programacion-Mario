@@ -38,19 +38,19 @@ public class ProductService {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
-        product.setName(updatedProduct.getName());
+        product.setNombre(updatedProduct.getNombre());
         product.setCantidad(updatedProduct.getCantidad());
-        product.setStatus(updatedProduct.getStatus());
+        product.setEstado(updatedProduct.getEstado());
 
         return productRepository.save(product);
     }
 
     public Product changeStatus(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado."));
-        if (product.getStatus() == ProductStatus.PENDING) {
-            product.setStatus(ProductStatus.PURCHASED);
+        if (product.getEstado() == ProductStatus.PENDIENTE) {
+            product.setEstado(ProductStatus.COMPRADO);
         } else {
-            product.setStatus(ProductStatus.PENDING);
+            product.setEstado(ProductStatus.PENDIENTE);
         }
 
         return productRepository.save(product);

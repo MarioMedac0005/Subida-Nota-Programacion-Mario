@@ -54,6 +54,13 @@ public class ProductController {
                     }
             )
     )
+    /**
+     * Maneja las solicitudes HTTP GET para obtener todos los productos.
+     *
+     * @return respuesta HTTP:
+     *         - 200 OK con la lista de productos si existen productos.
+     *         - 204 No Content si no hay productos disponibles.
+     */
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {
         List<Product> products = productService.getAll();
@@ -84,6 +91,13 @@ public class ProductController {
                     mediaType = "application/json"
             )
     )
+    /**
+     * Maneja las solicitudes HTTP GET para obtener un producto por su ID.
+     *
+     * @param id el ID del producto a obtener.
+     * @return el producto correspondiente al ID especificado.
+     *
+     */
     @GetMapping("/{id}")
     public Product getById(@PathVariable Long id) {
         return productService.getById(id);
@@ -110,6 +124,12 @@ public class ProductController {
                     }
             )
     )
+    /**
+     * Maneja las solicitudes HTTP POST para crear un nuevo producto.
+     *
+     * @param product el producto que se desea crear.
+     * @return el producto creado.
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product product) {
@@ -135,6 +155,14 @@ public class ProductController {
                     mediaType = "application/json"
             )
     )
+    /**
+     * Maneja las solicitudes HTTP PUT para actualizar un producto existente.
+     *
+     * @param id el ID del producto a actualizar.
+     * @param product el producto con los nuevos datos.
+     * @return el producto actualizado.
+     * 
+     */
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
@@ -158,6 +186,12 @@ public class ProductController {
                     mediaType = "application/json"
             )
     )
+    /**
+     * Maneja las solicitudes HTTP DELETE para eliminar un producto por su ID.
+     *
+     * @param id el ID del producto a eliminar.
+     * 
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Long id) {
@@ -183,6 +217,14 @@ public class ProductController {
                     mediaType = "application/json"
             )
     )
+    /**
+     * Maneja las solicitudes HTTP PATCH para cambiar el estado de un producto
+     * (por ejemplo, de 'PENDING' a 'PURCHASED').
+     *
+     * @param id el ID del producto cuyo estado se desea cambiar.
+     * @return el producto con el estado actualizado.
+     * 
+     */
     @PatchMapping("/{id}/change-status")
     public Product markAsCompleted(@PathVariable Long id) {
         return productService.changeStatus(id);
